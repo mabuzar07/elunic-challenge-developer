@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="page-header">
+    <h1>User Messages</h1>
+    <p class="page-description">
+      Send and view messages from users. All messages are displayed with
+      pagination for better organization.
+    </p>
+  </div>
+
+  <!-- Message Form -->
+  <app-user-message-form
+    (messageCreated)="onMessageCreated($event)"
+  ></app-user-message-form>
+
+  <!-- Messages List -->
+  <app-user-message-list
+    [messagesData]="messagesData"
+    [loading]="loading"
+    [error]="error"
+    (pageChange)="onPageChange($event)"
+    (sortChange)="onSortChange($event)"
+    (deleteMessage)="onDeleteMessage($event)"
+    (refresh)="onRefresh()"
+  ></app-user-message-list>
+
+  <!-- Toast for notifications -->
+  <p-toast position="top-right"></p-toast>
+</div>

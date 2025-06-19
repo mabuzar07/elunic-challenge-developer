@@ -1,0 +1,98 @@
+.message-list-container {
+  margin-top: 2rem;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.section-title {
+  margin: 0;
+  color: #495057;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.list-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6c757d;
+}
+
+.loading p {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.no-messages {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-messages p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.no-messages p:first-of-type {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pagination-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .list-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .list-controls {
+    justify-content: space-between;
+  }
+  
+  .section-title {
+    text-align: center;
+  }
+}
+
+::ng-deep .p-paginator {
+  border: none;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+::ng-deep .p-dropdown {
+  min-width: 200px;
+}
+
+::ng-deep .p-dropdown .p-dropdown-label {
+  padding: 0.75rem;
+}

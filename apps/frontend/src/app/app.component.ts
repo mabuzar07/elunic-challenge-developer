@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { UserMessagesPageComponent } from '../lib/features/user-messages/pages/user-messages-page/user-messages-page.component';
 
 @Component({
-  standalone: true,
-  imports: [RouterModule],
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  standalone: true,
+  imports: [UserMessagesPageComponent],
+  template: ` <app-user-messages-page></app-user-messages-page> `,
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {

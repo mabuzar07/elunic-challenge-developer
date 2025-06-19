@@ -1,0 +1,28 @@
+<p-card class="message-card">
+  <div class="message-meta">
+    <div class="sender-info">
+      <strong>{{ message.name }}</strong>
+      <span class="email">({{ message.email }})</span>
+    </div>
+    <div class="date-info">
+      <small>{{ formatDate(message.createdAt) }}</small>
+    </div>
+  </div>
+
+  <div class="message-content">
+    <p>{{ message.message }}</p>
+  </div>
+
+  <div class="message-actions" *ngIf="showActions">
+    <p-button
+      icon="pi pi-trash"
+      severity="danger"
+      size="small"
+      [text]="true"
+      (onClick)="onDelete()"
+      pTooltip="Delete message"
+    ></p-button>
+  </div>
+</p-card>
+
+<p-confirmDialog></p-confirmDialog>

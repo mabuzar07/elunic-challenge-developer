@@ -1,0 +1,74 @@
+<div class="message-list-container">
+  <!-- Header with controls -->
+  <div class="list-header">
+    <h2 class="section-title">Messages</h2>
+    <div class="list-controls">
+      <p-dropdown
+        [options]="sortOptions"
+        [(ngModel)]="selectedSort"
+        (onChange)="onSortChange()"
+        placeholder="Sort by..."
+        optionLabel="label"
+        optionValue="value"
+        [style]="{'min-width': '200px'}"
+      ></p-dropdown>
+      
+      <p-button
+        icon="pi pi-refresh"
+        [text]="true"
+        (onClick)="onRefresh()"
+        pTooltip="Refresh"
+        [loading]="loading"
+      ></p-button>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading">
+    <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+    <p>Loading messages...</p>
+  </div>
+
+  <!-- Error state -->
+  <p-message 
+    *ngIf="error && !loading" 
+    severity="error" 
+    [text]="error"
+    [style]="{'margin-bottom': '1rem'}"
+  ></p-message>
+
+  <!-- Messages list -->
+  <div *ngIf="!loading && !error && messagesData" class="messages-container">
+    <!-- No messages state -->
+    <div *ngIf="messagesData.data.length === 0" class="no-messages">
+      <i class="pi pi-inbox" style="font-size: 3rem; color: #6c757d; margin-bottom: 1rem;"></i>
+      <p>No messages found.</p>
+      <p>Be the first to send a message!</p>
+    </div>
+
+    <!-- Messages -->
+    <div *ngIf="messagesData.data.length > 0" class="messages-list">
+      <app-user-message-card
+        *ngFor="let message of messagesData.data; trackBy: trackByMessageId"
+        [message]="message"
+        [showActions]="true"
+        (deleteMessage)="onDeleteMessage($event)"
+      ></app-user-message-card>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="messagesData.data.length > 0" class="pagination-container">
+      <p-paginator
+        [rows]="rowsPerPage"
+        [totalRecords]="totalRecords"
+        [first]="currentPage * rowsPerPage"
+        (onPageChange)="onPageChange($event)"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} messages"
+        [rowsPerPageOptions]="[3, 5, 10, 20]"
+        [showPageLinks]="true"
+        [showFirstLastIcon]="true"
+      ></p-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<p-card header="Send a Message" [style]="{'margin-bottom': '2rem'}">
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form-grid">
+    <!-- Name Field -->
+    <div class="form-field">
+      <label for="name">Name *</label>
+      <input 
+        pInputText 
+        id="name" 
+        formControlName="name" 
+        placeholder="Enter your full name"
+        [class.ng-invalid]="isFieldInvalid('name')"
+      />
+      <small class="error-text" *ngIf="isFieldInvalid('name')">
+        {{ getFieldErrorMessage('name') }}
+      </small>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-field">
+      <label for="email">Email *</label>
+      <input 
+        pInputText 
+        id="email" 
+        type="email" 
+        formControlName="email" 
+        placeholder="Enter your email address"
+        [class.ng-invalid]="isFieldInvalid('email')"
+      />
+      <small class="error-text" *ngIf="isFieldInvalid('email')">
+        {{ getFieldErrorMessage('email') }}
+      </small>
+    </div>
+
+    <!-- Message Field -->
+    <div class="form-field">
+      <label for="message">Message *</label>
+      <textarea 
+        pInputTextarea 
+        id="message" 
+        formControlName="message" 
+        placeholder="Enter your message (max 5000 characters)"
+        rows="5"
+        [class.ng-invalid]="isFieldInvalid('message')"
+      ></textarea>
+      <small class="error-text" *ngIf="isFieldInvalid('message')">
+        {{ getFieldErrorMessage('message') }}
+      </small>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-field">
+      <p-button 
+        type="submit"
+        label="Send Message"
+        icon="pi pi-send"
+        [loading]="isSubmitting"
+        [disabled]="messageForm.invalid"
+        styleClass="p-button-primary"
+      ></p-button>
+    </div>
+
+    <!-- Success Message -->
+    <p-message 
+      *ngIf="submitSuccess" 
+      severity="success" 
+      text="Message sent successfully!"
+    ></p-message>
+
+    <!-- Error Message -->
+    <p-message 
+      *ngIf="submitError" 
+      severity="error" 
+      [text]="submitError"
+    ></p-message>
+  </form>
+</p-card>
